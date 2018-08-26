@@ -1,0 +1,30 @@
+﻿@model List<Ruby.Models.Page>
+<h2>Pages</h2>
+
+<table>
+    <tr>
+        <td colspan="5"><a class="btn btn-default" href="/Admin/AddPage/">Add new page</a></td>
+    </tr>
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Parent</td>
+        <td></td>
+        <td></td>
+    </tr>
+    @foreach (var page in Model)
+    {
+        <tr>
+            <td>@page.Id</td>
+            <td>@page.Name</td>
+            <td>@page.ParentId</td>
+            <td><a class="btn btn-info" href="/Admin/EditPage/@page.Id">Edit</a></td>
+            <td>
+                @if (!page.ParentId.HasValue)
+                {
+                    <a class="btn btn-success" href="/Admin/AddPage?parentId=@page.Id">Add subpage</a>
+                }
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,31 @@
+﻿@model Ruby.Models.Page
+<h2>Change page</h2>
+
+@using (Html.BeginForm("SavePage", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="container">
+    <input type="hidden" name="id" value="@Model.Id" />
+    @if (Model.ParentId.HasValue)
+    {
+        <input type="hidden" name="parentId" value="@Model.ParentId" />
+    }
+    <div class="row">
+        <div class="col-xs-2">Name:</div>
+        <div class="col-xs-10">
+            <input type="text" name="name" value="@Model.Name" />
+        </div>
+    </div>
+    <div class="row"></div>
+        <div class="row">
+            <div class="col-xs-2">Content:</div>
+            <div class="col-xs-10">
+                <textarea style="width:100%;height:300px;" name="pageContent">@Html.Raw(Model.PageContent)</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="submit" name="Submit" value="Submit" />
+            </div>
+        </div>
+    </div>
+    }

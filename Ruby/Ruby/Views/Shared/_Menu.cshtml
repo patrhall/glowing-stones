@@ -1,0 +1,30 @@
+﻿@model List<Ruby.Models.MenuItem>
+
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        @foreach (var item in Model)
+        {
+            if (!item.Children.Any())
+            {
+        <li><a href="/Page/@item.Name" class="sub-link-first">@item.Name</a></li>
+            }
+            else
+            {
+        <li>
+            <a href="/Page/@item.Name" class="sub-link-first">@item.Name</a>
+            <a class="dropdown-toggle sub-link" data-toggle="dropdown" href="#">
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                @foreach (var child in item.Children)
+                { 
+                <li><a href="/Page/@child.Name">@child.Name</a></li>
+                }
+            </ul>
+        </li>
+            }
+        }
+    </ul>
+    @Html.Partial("_LoginPartial")
+</div>
+

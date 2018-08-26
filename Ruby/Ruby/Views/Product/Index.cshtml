@@ -1,0 +1,13 @@
+﻿@model List<Ruby.Models.Product>
+
+<div class="container">
+    <div class="row">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <div class="col-sm-4">
+                <a><img width="100" src="~/UploadedImages/@(Model[i].InternalId + ".jpg")" />@Model[i].Name</a>
+            </div>
+        }
+        </div>
+    </div>
+

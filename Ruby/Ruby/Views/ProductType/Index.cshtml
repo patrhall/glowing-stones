@@ -1,0 +1,7 @@
+﻿@model List<Ruby.Models.ProductType>
+
+@foreach (var type in Model)
+{
+    <a href="Product?name=@type.Name">@type.Name</a>
+}
+
