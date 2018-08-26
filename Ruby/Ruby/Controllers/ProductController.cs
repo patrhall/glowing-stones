@@ -15,8 +15,8 @@ namespace Ruby.Controllers
         public async Task<ActionResult> Index(string name)
         {
             var context = new ApplicationDbContext();
-            var type = await context.ProductType.FirstOrDefaultAsync(x=>x.Name==name);
-            var products = await context.Product.Where(x=>x.ProductTypeId==type.Id).ToListAsync();
+            //var type = await context.ProductType.FirstOrDefaultAsync(x=>x.Name==name);
+            var products = await context.Product.Where(x=>x.Name==name).ToListAsync();
             
             return await Task.FromResult(View(products));
         }

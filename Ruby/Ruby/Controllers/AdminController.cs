@@ -58,18 +58,8 @@ namespace Ruby.Controllers
                 {
                     ExcelPackage package = new ExcelPackage(file.InputStream);
 
-                    foreach (var workSheet in package.Workbook.Worksheets.Where(c=>c.Cells.First().Text == "Intern Beteckning"))
+                    foreach (var workSheet in package.Workbook.Worksheets.Where(c=>c.Cells.First().Text == "Lot number"))
                     {
-                        int productTypeId = 0;
-                        if (!context.ProductType.Any(x => x.Name == workSheet.Name))
-                        {
-                            context.ProductType.Add(new ProductType { Name = workSheet.Name });
-                            await context.SaveChangesAsync();
-                        }
-                        
-                        productTypeId = context.ProductType.First(x=>x.Name==workSheet.Name).Id;
-                        
-
                         Dictionary<int, string> cells = new Dictionary<int, string>();
                         int cellCount = 0;
                         foreach (var firstRowCell in workSheet.Cells[1, 1, 1, workSheet.Dimension.End.Column])
@@ -84,14 +74,21 @@ namespace Ruby.Controllers
                         for (var rowNumber = 2; rowNumber <= workSheet.Dimension.End.Row; rowNumber++)
                         {
                             int cellInRows = 0;
-                            var product = new Product { ProductTypeId = productTypeId };
+                            var product = new Product();
                             bool addProduct = true;
+                            bool nextWorksheet = false;
                             foreach (var cell in cells)
                             {
                                 var keyName = cell.Value;
                                 var excelCellValue = (workSheet.Cells[rowNumber, cell.Key+1].Value ?? "").ToString();
-                                if (keyName == "Intern Beteckning")
+                                if (keyName == "Lot number")
                                 {
+                                    if (!string.IsNullOrWhiteSpace(excelCellValue))
+                                    {
+                                        nextWorksheet = true;
+                                        break;
+                                    }
+
                                     var exist = await context.Product.FirstOrDefaultAsync(x => x.InternalId == excelCellValue);
                                     if(exist!=null)
                                     {
@@ -101,15 +98,24 @@ namespace Ruby.Controllers
                                 }
 
                                 product.SetByDisplayName(keyName, excelCellValue);
+
                                 cellInRows += 1;
+
                             }
-                            if (addProduct)
+                            if (!nextWorksheet)
                             {
-                                products.Add(product);
+                                if (addProduct)
+                                {
+                                    products.Add(product);
+                                }
+                                else
+                                {
+                                    await context.SaveChangesAsync();
+                                }
                             }
                             else
                             {
-                                await context.SaveChangesAsync();
+                                break;
                             }
                         }
 

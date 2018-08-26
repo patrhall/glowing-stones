@@ -225,6 +225,22 @@
     <Compile Include="Migrations\201808141903003_Page_PageContent.Designer.cs">
       <DependentUpon>201808141903003_Page_PageContent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808261420302_product_type_image.cs" />
+    <Compile Include="Migrations\201808261420302_product_type_image.Designer.cs">
+      <DependentUpon>201808261420302_product_type_image.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808261426007_product_type_image2.cs" />
+    <Compile Include="Migrations\201808261426007_product_type_image2.Designer.cs">
+      <DependentUpon>201808261426007_product_type_image2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808261446514_product_type_remove.cs" />
+    <Compile Include="Migrations\201808261446514_product_type_remove.Designer.cs">
+      <DependentUpon>201808261446514_product_type_remove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808261448204_product_type_remove2.cs" />
+    <Compile Include="Migrations\201808261448204_product_type_remove2.Designer.cs">
+      <DependentUpon>201808261448204_product_type_remove2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -337,6 +353,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808141903003_Page_PageContent.resx">
       <DependentUpon>201808141903003_Page_PageContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808261420302_product_type_image.resx">
+      <DependentUpon>201808261420302_product_type_image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808261426007_product_type_image2.resx">
+      <DependentUpon>201808261426007_product_type_image2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808261446514_product_type_remove.resx">
+      <DependentUpon>201808261446514_product_type_remove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808261448204_product_type_remove2.resx">
+      <DependentUpon>201808261448204_product_type_remove2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

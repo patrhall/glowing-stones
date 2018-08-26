@@ -13,7 +13,7 @@ namespace Ruby.Models
         public string Name { get; set; }
         [DisplayName("Price")]
         public double? Price { get; set; }
-        [DisplayName("Intern Beteckning")]
+        [DisplayName("Lot number")]
         public string InternalId { get; set; }
         [DisplayName("Color")]
         public string Color { get; set; }
@@ -21,7 +21,7 @@ namespace Ruby.Models
         public double? Weight { get; set; }
         [DisplayName("Size")]
         public string Size { get; set; }
-        [DisplayName("Clean")]
+        [DisplayName("Clarity")]
         public string Clean { get; set; }
         [DisplayName("Pieces")]
         public int? Pieces { get; set; }
@@ -33,8 +33,7 @@ namespace Ruby.Models
         public string Treatment { get; set; }
         [DisplayName("Origin")]
         public string Origin { get; set; }
-        public byte Image { get; set; }
-        public int ProductTypeId { get; set; }
-        public virtual ProductType ProductType { get;set; }
+        [DisplayName("Comment")]
+        public string Comment { get; set; }
     }
 }

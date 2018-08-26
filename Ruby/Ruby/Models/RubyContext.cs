@@ -20,7 +20,6 @@ namespace Ruby.Models
             return new ApplicationDbContext();
         }
         public DbSet<Product> Product { get; set; }
-        public DbSet<ProductType> ProductType { get; set; }
         public DbSet<Page> Page { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace Ruby.Controllers
         public ActionResult Index(string id)
         {
             var context = new ApplicationDbContext();
-            var types = context.ProductType.ToList();
+            var types = new List<ProductType>();// context.ProductType.ToList();
             return View(types);
         }
     }
