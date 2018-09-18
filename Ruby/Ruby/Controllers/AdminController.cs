@@ -83,7 +83,7 @@ namespace Ruby.Controllers
                                 var excelCellValue = (workSheet.Cells[rowNumber, cell.Key+1].Value ?? "").ToString();
                                 if (keyName == "Lot number")
                                 {
-                                    if (!string.IsNullOrWhiteSpace(excelCellValue))
+                                    if (string.IsNullOrWhiteSpace(excelCellValue))
                                     {
                                         nextWorksheet = true;
                                         break;

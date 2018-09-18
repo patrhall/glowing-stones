@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -35,5 +36,7 @@ namespace Ruby.Models
         public string Origin { get; set; }
         [DisplayName("Comment")]
         public string Comment { get; set; }
+        [NotMapped]
+        public string Type { get { return Name + " " + Color; }}
     }
 }

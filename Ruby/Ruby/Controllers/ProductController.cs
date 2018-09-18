@@ -15,10 +15,20 @@ namespace Ruby.Controllers
         public async Task<ActionResult> Index(string name)
         {
             var context = new ApplicationDbContext();
-            //var type = await context.ProductType.FirstOrDefaultAsync(x=>x.Name==name);
-            var products = await context.Product.Where(x=>x.Name==name).ToListAsync();
+            var productTypes = new List<ProductType>();
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                productTypes = await context.Product.Where(x => x.Name == name)
+                    .GroupBy(_ => _.Name)
+                    .Select(_ => new ProductType { Name = _.Key, Products = _.Select(p=>p) }).ToListAsync(); ;
+            }
+            else
+            {
+                productTypes = await context.Product.GroupBy(_=>_.Name)
+                    .Select(_=>new ProductType { Name = _.Key, Products = _.Select(p=>p) }).ToListAsync();
+            }
             
-            return await Task.FromResult(View(products));
+            return await Task.FromResult(View(productTypes));
         }
     }
 }
