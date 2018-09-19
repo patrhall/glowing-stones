@@ -3,17 +3,19 @@
 <div class="container">
     @foreach (var productGroup in Model)
     {
-        <div class="row"><h2>@productGroup.Name</h2></div>
-            <div class="row">
-                @foreach (var product in productGroup.Products)
-                {
-
-                    <div class="col-sm-4">
-                        <a><img width="100" src="~/UploadedImages/@(product.InternalId + ".jpg")" />@product.Type</a>
-                    </div>
-                }
+        <div class="row @(productGroup.Name.Trim(' '))" data-toggle="collapse" data-target="@("#col" + productGroup.Name.Trim(' '))">
+                <h2>@productGroup.Name</h2>
+        </div>
+        <div class="row collapse products" id="@("col" + productGroup.Name.Trim(' '))">
+            @foreach (var product in productGroup.Products)
+            {
+            <div class="col-xs-6 col-sm-4 col-md-3 product">
+                <a class="product-text">@product.Type</a>
+                <a><img width="100" src="~/UploadedImages/@(product.InternalId + ".jpg")" /></a>
             </div>
             }
-
         </div>
+        }
+</div>
+<script type="text/javascript" src="~/Scripts/products.js"></script>
 

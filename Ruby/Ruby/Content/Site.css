@@ -16,6 +16,10 @@
     white-space: normal;
 }
 
+h2{
+    margin-top:10px;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -31,3 +35,107 @@ textarea {
     padding-left: 0 !important;
     float: left !important;
 }
+
+.Tourmalin,
+.Sapphire,
+.SapphireStar,
+.Rubin,
+.RubinStar,
+.Garnet,
+.Zirkon,
+.Beryl,
+.BerylAquamarin,
+.Aquamarin,
+.Amethyst,
+.Citrine,
+.Ametrine,
+.Opal,
+.Kunzite {
+    cursor: pointer;
+    padding-left:5px;
+}
+
+.Tourmalin {
+    background-color: lightgrey;
+}
+
+.Sapphire {
+    background-color: cornflowerblue;
+}
+
+.SapphireStar {
+    background-color: lightblue;
+}
+
+.Rubin {
+    background-color: lightcoral;
+}
+
+.RubinStar {
+    background-color: lightpink;
+}
+
+.Garnet {
+    background-color: rosybrown;
+}
+
+.Zirkon {
+    background-color: orange;
+}
+
+.Beryl {
+    background-color: lightgreen;
+}
+
+.BerylAquamarin {
+    background-color: mediumaquamarine;
+}
+
+.Aquamarin {
+    background-color: aquamarine;
+}
+
+.Amethyst {
+    background-color: mediumpurple;
+}
+
+.Citrine {
+    background-color: tan;
+}
+
+.Ametrine {
+    background-color: plum;
+}
+
+.Opal {
+    background-color: cadetblue;
+}
+
+.Kunzite {
+    background-color: violet;
+}
+
+.products {
+    padding:0px;
+}
+
+.product {
+    cursor: pointer;
+    height:150px;
+}
+
+    .product a img {
+        margin-left:30%;
+        margin-top: 8%;
+    }
+
+.product-text {
+    margin: 0;
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: gray;
+    font-size: 15px;
+}
+
