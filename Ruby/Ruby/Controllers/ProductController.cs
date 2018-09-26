@@ -41,10 +41,10 @@ namespace Ruby.Controllers
             return View();
         }
 
-        public async Task<ActionResult> GetCart(List<string> Ids)
+        public async Task<ActionResult> GetCart(List<string> ids)
         {
             var context = new ApplicationDbContext();
-            var products = await context.Product.Where(x => Ids.Contains(x.InternalId)).ToListAsync();
+            var products = await context.Product.Where(x => ids.Contains(x.InternalId)).ToListAsync();
 
             return await Task.FromResult(View(products));
         }

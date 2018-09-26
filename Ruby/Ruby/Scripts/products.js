@@ -29,10 +29,20 @@
         }
     };
     Products.getCart = function () {
-        var url = $('#cart').data('url');
-        const items = { ...localStorage };
-        $.get(url, items, function (data, status) {
-            var test = data;
+        var url = $('#cart').data('url'),
+            list = Object.values(localStorage),
+            jsonText = JSON.stringify({ ids: list });
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: jsonText,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                $('#cart-products').html(data);
+            },
+            failure: function () { console.log("failed"); }
         });
     };
     $(document).ready(function () {
