@@ -1,0 +1,24 @@
+﻿@model List<Ruby.Models.Product>
+
+<div class="container">
+    <div class="row">
+        <h2>@(Model.FirstOrDefault()?.Type)</h2>
+    </div>
+    <div class="row products">
+        @foreach (var product in Model)
+        {
+        <div class="col-xs-6 col-sm-4 col-md-2 product">
+            <div><img width="100" src="~/UploadedImages/@(product.InternalId + ".jpg")" /></div>
+            <br />
+            <div><strong>Weight</strong>&nbsp;<span>@product.Weight</span></div>
+            <div><strong>Size</strong>&nbsp;<span>@product.Size.Replace(" ", string.Empty)</span></div>
+            <div><strong>Clean</strong>&nbsp;<span>@product.Clean</span></div>
+            <div><strong>Price</strong>&nbsp;<span>@product.Price</span></div>
+            <button class="btn btn-success buy" data-id="@product.InternalId">Buy</button>
+        </div>
+
+        }
+    </div>
+</div>
+<script type="text/javascript" src="~/Scripts/products.js"></script>
+

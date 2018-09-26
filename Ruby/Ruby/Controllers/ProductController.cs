@@ -12,23 +12,41 @@ namespace Ruby.Controllers
     public class ProductController : Controller
     {
 
-        public async Task<ActionResult> Index(string name)
+        public async Task<ActionResult> Index()
         {
             var context = new ApplicationDbContext();
-            var productTypes = new List<ProductType>();
-            if (!string.IsNullOrWhiteSpace(name))
-            {
-                productTypes = await context.Product.Where(x => x.Name == name)
-                    .GroupBy(_ => _.Name)
-                    .Select(_ => new ProductType { Name = _.Key, Products = _.Select(p=>p) }).ToListAsync(); ;
-            }
-            else
-            {
-                productTypes = await context.Product.GroupBy(_=>_.Name)
+            var  productTypes = await context.Product.GroupBy(_=>_.Name)
                     .Select(_=>new ProductType { Name = _.Key, Products = _.Select(p=>p) }).ToListAsync();
-            }
             
             return await Task.FromResult(View(productTypes));
+        }
+
+        public async Task<ActionResult> Shop(string name, string color = null)
+        {
+            var context = new ApplicationDbContext();
+            var products = new List<Product>();
+
+            color = color == "" ? null : color;
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                products = await context.Product.Where(x => x.Name == name && x.Color == color).ToListAsync();
+            }
+
+            return await Task.FromResult(View(products));
+        }
+
+        public async Task<ActionResult> Cart()
+        {
+            return View();
+        }
+
+        public async Task<ActionResult> GetCart(List<string> Ids)
+        {
+            var context = new ApplicationDbContext();
+            var products = await context.Product.Where(x => Ids.Contains(x.InternalId)).ToListAsync();
+
+            return await Task.FromResult(View(products));
         }
     }
 }

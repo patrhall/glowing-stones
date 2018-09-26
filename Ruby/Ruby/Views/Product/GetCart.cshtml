@@ -1,0 +1,14 @@
+﻿@model List<Ruby.Models.Product>
+
+        @foreach (var product in Model)
+        {
+        <div class="col-xs-12 product-cart">
+            <div><img src="~/UploadedImages/@(product.InternalId + ".jpg")" /></div>
+            <div><strong>Id</strong>&nbsp;<span>@product.InternalId</span></div>
+            <div><strong>Price</strong>&nbsp;<span>@product.Price</span></div>
+            <button class="btn btn-danger remove" data-id="@product.InternalId">Buy</button>
+        </div>
+
+        }
+
+

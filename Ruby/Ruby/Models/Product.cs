@@ -38,5 +38,31 @@ namespace Ruby.Models
         public string Comment { get; set; }
         [NotMapped]
         public string Type { get { return Name + " " + Color; }}
+        [NotMapped]
+        public string Description { get { return ProductDescription(this); } }
+
+        private string ProductDescription(Product product)
+        {
+            var description = "";
+            if(!string.IsNullOrWhiteSpace(product.Weight.ToString()))
+            {
+                description += $"<label>{product.Weight.ToString()}</label><br/>";
+            }
+            if (!string.IsNullOrWhiteSpace(product.Size))
+            {
+                description += $"<label>{product.Size}</label><br/>";
+            }
+            if (!string.IsNullOrWhiteSpace(product.Clean))
+            {
+                description += $"<label>{product.Clean}</label><br/>";
+            }
+            //if show price
+            if (!string.IsNullOrWhiteSpace(product.Price.ToString()))
+            {
+                description += $"<label>{product.Price.ToString()}</label><br/>";
+            }
+
+            return description;
+        }
     }
 }
