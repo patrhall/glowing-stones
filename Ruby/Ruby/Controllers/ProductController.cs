@@ -12,13 +12,15 @@ namespace Ruby.Controllers
     public class ProductController : Controller
     {
 
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var context = new ApplicationDbContext();
-            var  productTypes = await context.Product.GroupBy(_=>_.Name)
-                    .Select(_=>new ProductType { Name = _.Key, Products = _.Select(p=>p) }).ToListAsync();
+            var  productTypes = context.Product.GroupBy(_=>_.Name)
+                    .OrderByDescending(_=>_.Count())
+                    .Select(_=>new ProductType { Name = _.Key, Products = _.Select(p=>p) })
+                    .ToList();
             
-            return await Task.FromResult(View(productTypes));
+            return View(productTypes);
         }
 
         public async Task<ActionResult> Shop(string name, string color = null)

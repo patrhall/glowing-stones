@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Ruby.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
 
