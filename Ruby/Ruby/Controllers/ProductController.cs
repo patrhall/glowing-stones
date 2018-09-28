@@ -46,7 +46,7 @@ namespace Ruby.Controllers
             var context = new ApplicationDbContext();
             var products = await context.Product.Where(x => ids.Contains(x.InternalId)).ToListAsync();
 
-            return await Task.FromResult(View(products));
+            return await Task.FromResult(PartialView(products));
         }
     }
 }
