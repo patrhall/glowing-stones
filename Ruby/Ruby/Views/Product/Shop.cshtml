@@ -8,7 +8,7 @@
         @foreach (var product in Model)
         {
         <div class="col-xs-6 col-sm-4 col-md-2 product">
-            <div><img width="100" src="~/UploadedImages/@(product.InternalId + ".jpg")" /></div>
+            <div><img width="100" src="@product.ImageFile" /></div>
             <br />
             <div><strong>Weight</strong>&nbsp;<span>@product.Weight</span></div>
             <div><strong>Size</strong>&nbsp;<span>@product.Size.Replace(" ", string.Empty)</span></div>

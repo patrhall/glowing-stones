@@ -9,5 +9,8 @@
 </div>
 
 <div class="row">
-    @{Html.RenderAction("Index", "Product");}
+    @{Html.RenderAction("Index", "Product", new
+        {                                                    
+            start = true
+        });}
 </div>

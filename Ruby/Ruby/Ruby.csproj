@@ -241,6 +241,10 @@
     <Compile Include="Migrations\201808261448204_product_type_remove2.Designer.cs">
       <DependentUpon>201808261448204_product_type_remove2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809292136099_product_Image.cs" />
+    <Compile Include="Migrations\201809292136099_product_Image.Designer.cs">
+      <DependentUpon>201809292136099_product_Image.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -265,6 +269,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\RolandStones - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -277,7 +282,9 @@
     <Content Include="Scripts\products.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -369,6 +376,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808261448204_product_type_remove2.resx">
       <DependentUpon>201808261448204_product_type_remove2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809292136099_product_Image.resx">
+      <DependentUpon>201809292136099_product_Image.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

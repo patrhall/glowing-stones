@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -133,18 +134,36 @@ namespace Ruby.Controllers
         {
             if (Request != null)
             {
-                var fileTypes = new List<string> { ".jpg",".jpeg",".png"};
-
+                var fileTypes = new List<string> { ".jpg"};
+                var context = new ApplicationDbContext();
                 foreach (var file in files)
                 {
                     if (file != null && file.ContentLength > 0 && fileTypes.Contains(Path.GetExtension(file.FileName)))
                     {
-                        var InputFileName = Path.GetFileName(file.FileName);
-                        var ServerSavePath = Path.Combine(Server.MapPath("~/UploadedImages/") + InputFileName);
-                        file.SaveAs(ServerSavePath);
+                        byte[] data;
+                        using (Stream inputStream = file.InputStream)
+                        {
+                            MemoryStream memoryStream = inputStream as MemoryStream;
+                            if (memoryStream == null)
+                            {
+                                memoryStream = new MemoryStream();
+                                inputStream.CopyTo(memoryStream);
+                            }
+                            data = memoryStream.ToArray();
+
+                            if (data != null)
+                            {
+                                var fileName = Path.GetFileNameWithoutExtension(file.FileName).ToLower();
+                                var product = await context.Product.SingleOrDefaultAsync(_=>_
+                                .InternalId.ToLower() == fileName);
+
+                                product.Image = data;
+                            }
+                        }
                     }
 
                 }
+                await context.SaveChangesAsync();
             }
             
             ViewBag.Result = "Done";

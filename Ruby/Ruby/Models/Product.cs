@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +11,7 @@ namespace Ruby.Models
 {
     public class Product
     {
+        private static readonly ImageConverter _imageConverter = new ImageConverter();
         public int Id { get; set; }
         [DisplayName("Name")]
         public string Name { get; set; }
@@ -36,33 +39,24 @@ namespace Ruby.Models
         public string Origin { get; set; }
         [DisplayName("Comment")]
         public string Comment { get; set; }
+        public byte[] Image { get; set; }
         [NotMapped]
         public string Type { get { return Name + " " + Color; }}
         [NotMapped]
-        public string Description { get { return ProductDescription(this); } }
+        public string ImageFile { get { return ProductGetImageFroByte(Image); } }
 
-        private string ProductDescription(Product product)
+        private string ProductGetImageFroByte(byte[] image)
         {
-            var description = "";
-            if(!string.IsNullOrWhiteSpace(product.Weight.ToString()))
+            if (image != null)
             {
-                description += $"<label>{product.Weight.ToString()}</label><br/>";
+                var base64 = Convert.ToBase64String(image);
+                var imgSrc = string.Format("data:image/jpg;base64,{0}", base64);
+                return imgSrc;
             }
-            if (!string.IsNullOrWhiteSpace(product.Size))
+            else
             {
-                description += $"<label>{product.Size}</label><br/>";
+                return null;
             }
-            if (!string.IsNullOrWhiteSpace(product.Clean))
-            {
-                description += $"<label>{product.Clean}</label><br/>";
-            }
-            //if show price
-            if (!string.IsNullOrWhiteSpace(product.Price.ToString()))
-            {
-                description += $"<label>{product.Price.ToString()}</label><br/>";
-            }
-
-            return description;
         }
     }
 }

@@ -3,7 +3,7 @@
         @foreach (var product in Model)
         {
         <div class="col-xs-6 product-cart">
-            <div><img src="~/UploadedImages/@(product.InternalId + ".jpg")" /></div>
+            <div><img src="@product.ImageFile" /></div>
             <div class="cart-info"><strong>Id</strong>&nbsp;<span>@product.InternalId</span></div>
             <div class="cart-info"><strong>Price</strong>&nbsp;<span>@product.Price</span></div>
             <button class="btn btn-danger remove" data-id="@product.InternalId">X</button>
