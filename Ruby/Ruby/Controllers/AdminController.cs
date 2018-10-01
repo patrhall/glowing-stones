@@ -134,7 +134,7 @@ namespace Ruby.Controllers
         {
             if (Request != null)
             {
-                var fileTypes = new List<string> { ".jpg"};
+                var fileTypes = new List<string> { ".jpg", ".png" , ".jpeg" , ".gif" };
                 var context = new ApplicationDbContext();
                 foreach (var file in files)
                 {

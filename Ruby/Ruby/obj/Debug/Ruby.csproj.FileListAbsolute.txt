@@ -328,3 +328,4 @@ C:\Users\patrik.hallner\Source\Repos\glowing-stones\Ruby\Ruby\obj\Debug\Ruby.csp
 C:\Users\patrik.hallner\Source\Repos\glowing-stones\Ruby\Ruby\obj\Debug\Ruby.dll
 C:\Users\patrik.hallner\Source\Repos\glowing-stones\Ruby\Ruby\obj\Debug\Ruby.pdb
 C:\Users\seprjpaha\source\repos\glowing-stones\Ruby\Ruby\obj\Debug\Ruby.Migrations.product_Image.resources
+C:\Users\patrik.hallner\Source\Repos\glowing-stones\Ruby\Ruby\obj\Debug\Ruby.Migrations.product_Image.resources

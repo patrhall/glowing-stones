@@ -9,9 +9,11 @@
         <div class="row collapse products" id="@("col" + productGroup.Name.Trim(' '))">
             @foreach (var product in productGroup.Products)
             {
-            <div class="col-xs-6 col-sm-4 col-md-2 product-type well">
-                <a class="product-text" href="~/Product/Shop?name=@(product.Name)&color=@(product.Color)">@product.Type</a>
-                <div><img width="100" src="@product.ImageFile" /></div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="product-type well">
+                    <a class="product-text" href="~/Product/Shop?name=@(product.Name)&color=@(product.Color)">@product.Type</a>
+                    <div><img src="@product.ImageFile" /></div>
+                </div>
             </div>
             }
         </div>
