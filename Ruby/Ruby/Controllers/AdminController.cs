@@ -158,6 +158,7 @@ namespace Ruby.Controllers
                                 .InternalId.ToLower() == fileName);
 
                                 product.Image = data;
+                                product.ThumbImage = MakeThumbnail(data);
                             }
                         }
                     }
@@ -168,6 +169,23 @@ namespace Ruby.Controllers
             
             ViewBag.Result = "Done";
             return View("ImportImages");
+        }
+
+        public static byte[] MakeThumbnail(byte[] myImage)
+        {
+            int width = 250;
+            using (MemoryStream ms = new MemoryStream())
+            using (Image image = Image.FromStream(new MemoryStream(myImage)))
+            {
+                if (image.Width > width)
+                {
+                    int height = image.Height / (image.Width / width);
+                    var thumbnail = image.GetThumbnailImage(width, height, null, new IntPtr());
+                    thumbnail.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    return ms.ToArray();
+                }
+                return myImage;
+            }
         }
 
         public async Task<ActionResult> SavePage(int id, string name, string pageContent, int? parentId = null)

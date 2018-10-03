@@ -17,7 +17,7 @@ namespace Ruby.Controllers
             var context = new ApplicationDbContext();
             var  productTypes = context.Product.GroupBy(_=>_.Name)
                     .OrderByDescending(_=>_.Count())
-                    .Select(_=>new ProductType { Name = _.Key, Products = _.Select(p=>p) })
+                    .Select(_=>new ProductType { Name = _.Key, Products = _.GroupBy(g=>g.Color).Select(p=>p.FirstOrDefault()) })
                     .ToList();
 
             if (start)

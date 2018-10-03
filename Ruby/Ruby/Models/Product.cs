@@ -40,11 +40,13 @@ namespace Ruby.Models
         [DisplayName("Comment")]
         public string Comment { get; set; }
         public byte[] Image { get; set; }
+        public byte[] ThumbImage { get; set; }
         [NotMapped]
         public string Type { get { return Name + " " + Color; }}
         [NotMapped]
         public string ImageFile { get { return ProductGetImageFroByte(Image); } }
-
+        [NotMapped]
+        public string ThumbImageFile { get { return ProductGetImageFroByte(ThumbImage); } }
         private string ProductGetImageFroByte(byte[] image)
         {
             if (image != null)

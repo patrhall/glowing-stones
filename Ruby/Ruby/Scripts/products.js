@@ -8,8 +8,12 @@
         $(document).on('click', '.buy', Products.addToShop);
         $(document).on('click', '.remove', Products.removeFromShop);
 
-        if ($('#cart')) {
+        if ($('#cart').length) {
             Products.getCart();
+        }
+
+        if ($('.thumb').length) {
+            Products.setModal();
         }
 
         var isMobile = window.matchMedia('only screen and (max-width: 760px)');
@@ -50,6 +54,20 @@
         }).done(function (html) {
             $('#cart-products').html(html);
             });
+    };
+    Products.setModal = function () {
+
+        $('.thumb').click(function () {
+            var img = $(this);
+            $('#modalImage').show();
+            $('#img01').attr('src', $(img).data('src'));
+            $('#caption').html($(img).attr('alt'));
+         });
+
+        // When the user clicks on <span> (x), close the modal
+        $('.close').click(function () {
+            $('#modalImage').hide();
+        });
     };
     $(document).ready(function () {
         Products.initPage();

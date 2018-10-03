@@ -32,5 +32,16 @@
 
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <!-- The Modal -->
+    <div id="modalImage" class="modal">
+        <div id="imgModal" class="modal-body">
+            <!-- Modal Content (The Image) -->
+            <img class="modal-content" id="img01">
+            <!-- The Close Button -->
+            <span class="close">&times;</span>
+        </div>
+        <!-- Modal Caption (Image Text) -->
+        <div id="caption"></div>
+    </div>
 </body>
 </html>

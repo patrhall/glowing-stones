@@ -7,15 +7,17 @@
     <div class="row products">
         @foreach (var product in Model)
         {
-        <div class="col-xs-6 col-sm-4 col-md-2 product">
-            <div><img width="100" src="@product.ImageFile" /></div>
-            <br />
-            <div><strong>Weight</strong>&nbsp;<span>@product.Weight</span></div>
-            <div><strong>Size</strong>&nbsp;<span>@product.Size.Replace(" ", string.Empty)</span></div>
-            <div><strong>Clean</strong>&nbsp;<span>@product.Clean</span></div>
-            <div><strong>Price</strong>&nbsp;<span>@product.Price</span></div>
-            <button class="btn btn-success buy" data-id="@product.InternalId">Buy</button>
-        </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="product well">
+                    <div><img src="@product.ThumbImageFile" class="thumb" alt="@product.Clean" data-src="@product.ImageFile"/></div>
+                    <br />
+                    <div><strong>Weight</strong>&nbsp;<span>@product.Weight</span></div>
+                    <div><strong>Size</strong>&nbsp;<span>@product.Size.Replace(" ", string.Empty)</span></div>
+                    <div><strong>Clean</strong>&nbsp;<span>@product.Clean</span></div>
+                    <div><strong>Price</strong>&nbsp;<span>@product.Price</span></div>
+                    <button class="btn btn-success buy" data-id="@product.InternalId">Buy</button>
+                </div>
+            </div>
 
         }
     </div>
