@@ -16,6 +16,10 @@
             Products.setModal();
         }
 
+        if ($('.ticker').length) {
+            Products.getCurrency();
+        }
+
         var isMobile = window.matchMedia('only screen and (max-width: 760px)');
 
         if (!isMobile.matches) {
@@ -53,7 +57,7 @@
             contentType: 'application/json; charset=utf-8'
         }).done(function (html) {
             $('#cart-products').html(html);
-            });
+        });
     };
     Products.setModal = function () {
 
@@ -62,11 +66,20 @@
             $('#modalImage').show();
             $('#img01').attr('src', $(img).data('src'));
             $('#caption').html($(img).attr('alt'));
-         });
+        });
 
         // When the user clicks on <span> (x), close the modal
         $('.close').click(function () {
             $('#modalImage').hide();
+        });
+    };
+    Products.getCurrency = function () {
+        $('.currency').each((i, price) => {
+            if ($(price).data('currency') === 'eur') {
+                $(price).html('(EUR)');
+            } else if ($(price).data('currency') === 'sek') {
+                $(price).html('(SEK)');
+            }
         });
     };
     $(document).ready(function () {

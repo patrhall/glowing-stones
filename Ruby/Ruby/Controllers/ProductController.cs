@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -36,6 +37,9 @@ namespace Ruby.Controllers
             var products = new List<Product>();
 
             color = color == "" ? null : color;
+
+            var _httpClient = new HttpClient();
+            var data = await _httpClient.GetStringAsync("https://www.freeforexapi.com/api/live?pairs=USDEUR,USDSEK");
 
             if (!string.IsNullOrWhiteSpace(name))
             {

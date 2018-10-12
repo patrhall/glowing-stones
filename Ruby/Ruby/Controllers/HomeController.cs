@@ -15,5 +15,10 @@ namespace Ruby.Controllers
         {
             return View();
         }
+
+        public ActionResult Currency()
+        {
+            return PartialView();
+        }
     }
 }

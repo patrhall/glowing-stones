@@ -4,23 +4,27 @@
     <div class="row">
         <h2>@(Model.FirstOrDefault()?.Type)</h2>
     </div>
-    <div class="row products">
+    <div class="row products" d@*ata-api="@Url.Action(" Currency","Home")"*@>
         @foreach (var product in Model)
         {
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="product well">
-                    <div><img src="@product.ThumbImageFile" class="thumb" alt="@product.Clean" data-src="@product.ImageFile"/></div>
+                    <div><img src="@product.ThumbImageFile" class="thumb" alt="@product.Clean" data-src="@product.ImageFile" /></div>
                     <br />
-                    <div><strong>Weight</strong>&nbsp;<span>@product.Weight</span></div>
-                    <div><strong>Size</strong>&nbsp;<span>@product.Size.Replace(" ", string.Empty)</span></div>
-                    <div><strong>Clean</strong>&nbsp;<span>@product.Clean</span></div>
-                    <div><strong>Price</strong>&nbsp;<span>@product.Price</span></div>
+                    <div><strong>Weight:</strong>&nbsp;<span>@product.Weight ct</span></div>
+                    <div><strong>Size:</strong>&nbsp;<span>@product.Size.Replace(" x ", "x")</span></div>
+                    <div><strong>Clean:</strong>&nbsp;<span>@product.Clean</span></div>
+                    <div><strong>Price<span class="currency" data-currency="usd">(USD)</span></strong>&nbsp;<span class="ticker">@product.Price</span></div>
                     <button class="btn btn-success buy" data-id="@product.InternalId">Buy</button>
                 </div>
             </div>
 
         }
     </div>
+    <i>Current rates: USD to SEK and USD to EUR: <span class="rates"></span> from</i>
+    <a href="https://www.freeforexapi.com">
+        <img alt="Free Forex API" src="https://www.freeforexapi.com/Images/link.png" height="20">
+    </a>
 </div>
 <script type="text/javascript" src="~/Scripts/products.js"></script>
 
