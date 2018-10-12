@@ -14,7 +14,7 @@
                     <div><strong>Weight:</strong>&nbsp;<span>@product.Weight ct</span></div>
                     <div><strong>Size:</strong>&nbsp;<span>@product.Size.Replace(" x ", "x")</span></div>
                     <div><strong>Clean:</strong>&nbsp;<span>@product.Clean</span></div>
-                    <div><strong>Price<span class="currency" data-currency="usd">(USD)</span></strong>&nbsp;<span class="ticker">@product.Price</span></div>
+                    <div><strong>Price@(product.Currency):</strong>&nbsp;<span>@product.ConvertedPrice</span></div>
                     <button class="btn btn-success buy" data-id="@product.InternalId">Buy</button>
                 </div>
             </div>

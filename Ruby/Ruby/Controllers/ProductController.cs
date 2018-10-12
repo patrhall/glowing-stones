@@ -7,6 +7,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using Ruby.Extensions;
 
 namespace Ruby.Controllers
 {
@@ -38,12 +40,25 @@ namespace Ruby.Controllers
 
             color = color == "" ? null : color;
 
+            var currency = "sek";
             var _httpClient = new HttpClient();
-            var data = await _httpClient.GetStringAsync("https://www.freeforexapi.com/api/live?pairs=USDEUR,USDSEK");
+            var data =
+                "{\"rates\":{\"USDEUR\":{\"rate\":0.864686,\"timestamp\":1539372568362},\"USDSEK\":{\"rate\":8.955691,\"timestamp\":1539372572081}},\"code\":200}"; //;await _httpClient.GetStringAsync("https://www.freeforexapi.com/api/live?pairs=USDEUR,USDSEK");
+            var json = JsonConvert.DeserializeObject<RateObject>(data);
+            float rate = 1;
+
+            if (currency == "sek")
+            {
+                rate = json.rates.USDSEK.rate;
+            }
+            else if (currency == "eur")
+            {
+                rate = json.rates.USDEUR.rate;
+            }
 
             if (!string.IsNullOrWhiteSpace(name))
             {
-                products = await context.Product.Where(x => x.Name == name && x.Color == color).ToListAsync();
+                products = await context.Product.Where(x => x.Name == name && x.Color == color).AndCurrencyRate(currency, rate).ToListAsync();
             }
 
             return await Task.FromResult(View(products));

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -11,7 +10,9 @@ namespace Ruby.Models
 {
     public class Product
     {
-        private static readonly ImageConverter _imageConverter = new ImageConverter();
+        private string _currency = "usd";
+        private float _rate = 1;
+
         public int Id { get; set; }
         [DisplayName("Name")]
         public string Name { get; set; }
@@ -42,7 +43,35 @@ namespace Ruby.Models
         public byte[] Image { get; set; }
         public byte[] ThumbImage { get; set; }
         [NotMapped]
-        public string Type { get { return Name + " " + Color; }}
+        public string Type { get { return Name + " " + Color; } }
+        [NotMapped]
+        public double? ConvertedPrice
+        {
+            get
+            {
+                if (Price != null)
+                {
+                    return Math.Round(Price.Value * _rate, 2);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+        [NotMapped]
+        public string Currency
+        {
+            get
+            {
+                return "(" + _currency.ToUpper() + ")";
+            }
+        }
+        public void SetConvertedPriceAndCurrency(string currency = "usd", float rate = 1)
+        {
+            _currency = currency;
+            _rate = rate;           
+        }
         [NotMapped]
         public string ImageFile { get { return ProductGetImageFroByte(Image); } }
         [NotMapped]

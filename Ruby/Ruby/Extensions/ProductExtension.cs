@@ -5,11 +5,19 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using Microsoft.Ajax.Utilities;
+using WebGrease.Css.Extensions;
 
 namespace Ruby.Extensions
 {
     public static class ProductExtension
     {
+        public static IQueryable<Product> AndCurrencyRate(this IQueryable<Product> products, string currency, float rate)
+        {
+            products.ForEach(p => p.SetConvertedPriceAndCurrency(currency, rate));
+            return products;
+        }
+
         public static Product SetByDisplayName(this Product product, string name, string value)
         {
             PropertyInfo[] properties = typeof(Product).GetProperties();

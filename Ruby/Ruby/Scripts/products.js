@@ -16,10 +16,6 @@
             Products.setModal();
         }
 
-        if ($('.ticker').length) {
-            Products.getCurrency();
-        }
-
         var isMobile = window.matchMedia('only screen and (max-width: 760px)');
 
         if (!isMobile.matches) {
@@ -71,15 +67,6 @@
         // When the user clicks on <span> (x), close the modal
         $('.close').click(function () {
             $('#modalImage').hide();
-        });
-    };
-    Products.getCurrency = function () {
-        $('.currency').each((i, price) => {
-            if ($(price).data('currency') === 'eur') {
-                $(price).html('(EUR)');
-            } else if ($(price).data('currency') === 'sek') {
-                $(price).html('(SEK)');
-            }
         });
     };
     $(document).ready(function () {
