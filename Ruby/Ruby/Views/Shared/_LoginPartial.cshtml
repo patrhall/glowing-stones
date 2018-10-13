@@ -31,9 +31,18 @@
     }
     else
     {
-        <ul class="nav navbar-nav navbar-right">
-            <li>@Html.ActionLink("Cart", "Cart", "Product", routeValues: null, htmlAttributes: new { id = "cartLink" })</li>
-            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-        </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <a class="sub-link-first"><img src="../../Images/usd.png" width="32" /></a>
+                <a class="dropdown-toggle sub-link" data-toggle="dropdown" href="#">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><img src="../../Images/usd.png" width="32" /></a></li>
+                    <li><a href="#"><img src="../../Images/eur.png" width="32" /></a></li>
+                    <li><a href="#"><img src="../../Images/sek.png" width="32" /></a></li>
+                </ul>
+                <li>@Html.ActionLink("Cart", "Cart", "Product", routeValues: null, htmlAttributes: new { id = "cartLink" })</li>
+                <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            </ul>
     }

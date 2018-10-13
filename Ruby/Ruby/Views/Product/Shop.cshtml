@@ -4,7 +4,7 @@
     <div class="row">
         <h2>@(Model.FirstOrDefault()?.Type)</h2>
     </div>
-    <div class="row products" d@*ata-api="@Url.Action(" Currency","Home")"*@>
+    <div class="row products">
         @foreach (var product in Model)
         {
             <div class="col-xs-12 col-sm-6 col-md-3">
@@ -21,7 +21,7 @@
 
         }
     </div>
-    <i>Current rates: USD to SEK and USD to EUR: <span class="rates"></span> from</i>
+    <i>Current rates: USD to SEK: @(ViewBag.SEK) and USD to EUR: @(ViewBag.EUR) from</i>
     <a href="https://www.freeforexapi.com">
         <img alt="Free Forex API" src="https://www.freeforexapi.com/Images/link.png" height="20">
     </a>

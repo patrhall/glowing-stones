@@ -56,6 +56,9 @@ namespace Ruby.Controllers
                 rate = json.rates.USDEUR.rate;
             }
 
+            ViewBag.SEK = json.rates.USDSEK.rate.ToString("##.##");
+            ViewBag.EUR = json.rates.USDEUR.rate.ToString("##.##"); ;
+
             if (!string.IsNullOrWhiteSpace(name))
             {
                 products = await context.Product.Where(x => x.Name == name && x.Color == color).AndCurrencyRate(currency, rate).ToListAsync();
