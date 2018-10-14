@@ -40,7 +40,7 @@ namespace Ruby.Controllers
 
             color = color == "" ? null : color;
 
-            var currency = "sek";
+            var currency = Session["ticker"]?.ToString() ?? "usd";
             var _httpClient = new HttpClient();
             var data =
                 "{\"rates\":{\"USDEUR\":{\"rate\":0.864686,\"timestamp\":1539372568362},\"USDSEK\":{\"rate\":8.955691,\"timestamp\":1539372572081}},\"code\":200}"; //;await _httpClient.GetStringAsync("https://www.freeforexapi.com/api/live?pairs=USDEUR,USDSEK");
@@ -78,6 +78,14 @@ namespace Ruby.Controllers
             var products = await context.Product.Where(x => ids.Contains(x.InternalId)).ToListAsync();
 
             return await Task.FromResult(PartialView(products));
+        }
+
+        public void SetTicker(string id)
+        {
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                Session["ticker"] = id;
+            }
         }
     }
 }
