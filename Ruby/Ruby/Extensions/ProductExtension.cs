@@ -12,7 +12,7 @@ namespace Ruby.Extensions
 {
     public static class ProductExtension
     {
-        public static IQueryable<Product> AndCurrencyRate(this IQueryable<Product> products, string currency, float rate, double discount)
+        public static IQueryable<Product> AndCurrencyRate(this IQueryable<Product> products, string currency, float rate, double discount = 0)
         {
             products.ForEach(p => p.SetConvertedPriceAndCurrency(currency, rate, discount));
             return products;

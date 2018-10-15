@@ -51,7 +51,7 @@ namespace Ruby.Models
                 if (Price != null)
                 {
                     var val = (Price.Value * _rate);
-                    var dis = val / _discount;
+                    var dis = _discount == 0 ? 0 : val * (_discount/100);
                     var sum = val - dis;
                     return Math.Round(sum, 2);
                 }

@@ -44,7 +44,8 @@ namespace Ruby.Controllers
             var currency = Session["ticker"]?.ToString() ?? "usd";
             var _httpClient = new HttpClient();
             var data =
-                "{\"rates\":{\"USDEUR\":{\"rate\":0.864686,\"timestamp\":1539372568362},\"USDSEK\":{\"rate\":8.955691,\"timestamp\":1539372572081}},\"code\":200}"; //;await _httpClient.GetStringAsync("https://www.freeforexapi.com/api/live?pairs=USDEUR,USDSEK");
+                "{\"rates\":{\"USDEUR\":{\"rate\":0.864686,\"timestamp\":1539372568362},\"USDSEK\":{\"rate\":8.955691,\"timestamp\":1539372572081}},\"code\":200}";
+            //var data = await _httpClient.GetStringAsync("https://www.freeforexapi.com/api/live?pairs=USDEUR,USDSEK");
             var json = JsonConvert.DeserializeObject<RateObject>(data);
             float rate = 1;
 
@@ -65,7 +66,10 @@ namespace Ruby.Controllers
             {
                 var userId = User.Identity.GetUserId();
                 var user = await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
-                discount = user?.Discount ?? 0;
+                if (user != null && user.Discount > 0)
+                {
+                    discount = user.Discount;
+                }
             }
 
             if (!string.IsNullOrWhiteSpace(name))
