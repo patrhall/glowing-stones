@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using Ruby.Extensions;
 
@@ -57,11 +58,19 @@ namespace Ruby.Controllers
             }
 
             ViewBag.SEK = json.rates.USDSEK.rate.ToString("##.##");
-            ViewBag.EUR = json.rates.USDEUR.rate.ToString("##.##"); ;
+            ViewBag.EUR = json.rates.USDEUR.rate.ToString("##.##");
+            double discount = 0;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+                discount = user?.Discount ?? 0;
+            }
 
             if (!string.IsNullOrWhiteSpace(name))
             {
-                products = await context.Product.Where(x => x.Name == name && x.Color == color).AndCurrencyRate(currency, rate).ToListAsync();
+                products = await context.Product.Where(x => x.Name == name && x.Color == color).AndCurrencyRate(currency, rate, discount).ToListAsync();
             }
 
             return await Task.FromResult(View(products));

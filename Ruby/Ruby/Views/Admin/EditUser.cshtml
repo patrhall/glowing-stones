@@ -1,0 +1,27 @@
+﻿@model Ruby.Models.ApplicationUser
+<h2>Edit user</h2>
+
+@using (Html.BeginForm("SaveUser", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="container">
+        <input type="hidden" name="id" value="@Model.Id"/>
+        <div class="row">
+            <div class="col-xs-2">Email:</div>
+            <div class="col-xs-10">
+                <input type="text" name="email" value="@Model.Email"/>
+            </div>
+        </div>
+        <div class="row"></div>
+        <div class="row">
+            <div class="col-xs-2">Discount:</div>
+            <div class="col-xs-10">
+                <input type="number" name="discount" value="@Model.Discount"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="submit" name="Submit" value="Submit"/>
+            </div>
+        </div>
+    </div>
+}

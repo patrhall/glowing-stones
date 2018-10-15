@@ -36,6 +36,14 @@ namespace Ruby.Controllers
             return View(page ?? new Page());
         }
 
+        public async Task<ActionResult> EditUser(string id)
+        {
+            var context = new ApplicationDbContext();
+            var user = await context.Users.FirstAsync(u=>u.Id==id);
+
+            return View(user);
+        }
+
         public ActionResult AddPage(int? parentId = null)
         {
             var page = new Page { ParentId = parentId };
@@ -229,6 +237,20 @@ namespace Ruby.Controllers
             await context.SaveChangesAsync();
 
             return RedirectToAction("Pages");
+        }
+
+        public async Task<ActionResult> SaveUser(string id, string email, int discount)
+        {
+            var context = new ApplicationDbContext();
+
+            var user = await context.Users.FirstAsync(u=>u.Id==id);
+            user.UserName = email;
+            user.Email = email;
+            user.Discount = discount;
+
+            await context.SaveChangesAsync();
+
+            return RedirectToAction("Users");
         }
     }
 }

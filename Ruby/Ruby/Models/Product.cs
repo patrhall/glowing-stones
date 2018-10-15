@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.IO;
-using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 
 namespace Ruby.Models
 {
@@ -12,6 +10,7 @@ namespace Ruby.Models
     {
         private string _currency = "usd";
         private float _rate = 1;
+        private double _discount = 1;
 
         public int Id { get; set; }
         [DisplayName("Name")]
@@ -51,7 +50,10 @@ namespace Ruby.Models
             {
                 if (Price != null)
                 {
-                    return Math.Round(Price.Value * _rate, 2);
+                    var val = (Price.Value * _rate);
+                    var dis = val / _discount;
+                    var sum = val - dis;
+                    return Math.Round(sum, 2);
                 }
                 else
                 {
@@ -67,10 +69,11 @@ namespace Ruby.Models
                 return "(" + _currency.ToUpper() + ")";
             }
         }
-        public void SetConvertedPriceAndCurrency(string currency = "usd", float rate = 1)
+        public void SetConvertedPriceAndCurrency(string currency = "usd", float rate = 1, double discount = 0)
         {
             _currency = currency;
-            _rate = rate;           
+            _rate = rate;
+            _discount = discount;
         }
         [NotMapped]
         public string ImageFile { get { return ProductGetImageFroByte(Image); } }
