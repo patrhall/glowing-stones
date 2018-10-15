@@ -30,6 +30,7 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
+                    <li><a href="/Admin/Users">Users</a></li>
                     <li><a href="/Admin/Pages">Pages</a></li>
                     <li><a href="/Admin/ImportProducts">Import excel</a></li>
                     <li><a href="/Admin/ImportImages">Import images</a></li>
@@ -53,7 +54,6 @@
     {
         <ul class="nav navbar-nav navbar-right">
             <li>@Html.ActionLink("Cart", "Cart", "Product", routeValues: null, htmlAttributes: new {id = "cartLink"})</li>
-            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink"})</li>
             <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink"})</li>
         </ul>
     }

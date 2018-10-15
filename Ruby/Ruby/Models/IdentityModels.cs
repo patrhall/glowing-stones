@@ -16,5 +16,7 @@ namespace Ruby.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public int Discount { get; set; }
     }
 }

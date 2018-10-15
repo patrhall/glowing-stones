@@ -1,0 +1,26 @@
+﻿@model List<Ruby.Models.ApplicationUser>
+<h2>Pages</h2>
+
+<table id="pages">
+    <tr>
+        <td colspan="5">@Html.ActionLink("Register user", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <th>Discount %</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>@user.Discount</td>
+            <td colspan="2">
+                <a class="btn btn-info" href="/Admin/EditUser/@user.Id">Edit</a>
+                <a class="delete btn btn-warning" data-href="/Admin/DeleteUser/@user.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+@*<script type="text/javascript" src="~/Scripts/pages.js"></script>*@

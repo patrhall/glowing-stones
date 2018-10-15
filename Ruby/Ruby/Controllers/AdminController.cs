@@ -42,11 +42,29 @@ namespace Ruby.Controllers
             return View(page);
         }
 
+        public async Task DeletePage(int id)
+        {
+            var context = new ApplicationDbContext();
+            var children = context.Page.Where(p => p.ParentId == id);
+            var page = await context.Page.FindAsync(id);
+
+            context.Page.RemoveRange(children);
+            context.Page.Remove(page);
+            await context.SaveChangesAsync();
+        }
+
         public async Task<ActionResult> Pages()
         {
             var context = new ApplicationDbContext();
             var pages = await context.Page.ToListAsync();
             return View(pages);
+        }
+
+        public async Task<ActionResult> Users()
+        {
+            var context = new ApplicationDbContext();
+            var users = await context.Users.ToListAsync();
+            return View(users);
         }
 
         public async Task<ActionResult> ExcelImport(FormCollection formCollection)

@@ -181,10 +181,17 @@ textarea {
     margin-top: 4%;
 }
 
+.sessCurr {
+    cursor: pointer;
+}
+
 /*MODAL*/
 
 .thumb:hover {
     opacity: 0.7;
+    cursor: zoom-in;
+    cursor: -moz-zoom-in;
+    cursor: -moz-zoom-in;
 }
 
 /* The Modal (background) */
@@ -262,10 +269,6 @@ textarea {
         cursor: pointer;
     }
 
-.sessCurr {
-    cursor: pointer;
-}
-
 /* 100% Image Width on Smaller Screens */
 @media only screen and (max-width: 700px) {
     .modal-content {
@@ -274,3 +277,33 @@ textarea {
 }
 
 /*END MODAL*/
+
+/*PAGES TABLE*/
+#pages {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    #pages td, #pages th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #pages tr:nth-child(even) {
+        background-color: #c4c4c4;
+    }
+
+    #pages tr:hover {
+        background-color: #ddd;
+    }
+
+    #pages th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    /*END PAGES TABLE*/

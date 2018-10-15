@@ -249,6 +249,10 @@
     <Compile Include="Migrations\201810030650574_thumb.Designer.cs">
       <DependentUpon>201810030650574_thumb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810150836418_users_discount.cs" />
+    <Compile Include="Migrations\201810150836418_users_discount.Designer.cs">
+      <DependentUpon>201810150836418_users_discount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -286,6 +290,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\pages.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\menu.js" />
     <Content Include="Scripts\products.js" />
@@ -338,6 +343,7 @@
     <Content Include="Views\Product\Shop.cshtml" />
     <Content Include="Views\Product\Cart.cshtml" />
     <Content Include="Views\Product\GetCart.cshtml" />
+    <Content Include="Views\Admin\Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -389,6 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810030650574_thumb.resx">
       <DependentUpon>201810030650574_thumb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810150836418_users_discount.resx">
+      <DependentUpon>201810150836418_users_discount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
